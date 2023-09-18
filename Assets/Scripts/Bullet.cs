@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float velocity = 5f;
-    public float upperBoundary = 10f; // Límite superior de la pantalla
 
     void Start()
     {
@@ -22,11 +21,13 @@ public class Bullet : MonoBehaviour
         // Igualamos la posición con transform.position.
         transform.position = novaPos;
 
+        float limitSuperiorY = Camera.main.orthographicSize;
+
         // Verificamos si la posición del objeto ha superado el límite superior.
-        if (transform.position.y >= upperBoundary)
+        if (transform.position.y >= limitSuperiorY)
         {
             // Destruir el objeto cuando llega al borde superior de la pantalla.
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
