@@ -57,6 +57,14 @@ public class NauJugador : MonoBehaviour
     private void shoot()
     {
         GameObject Bullet = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
-        Bullet.transform.position = transform.position;
+        Vector2 newPos = transform.position;
+        newPos.x += 0.2f;
+        Bullet.transform.position = newPos;
+
+
+        GameObject Bullet2 = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
+        Vector2 newPos2 = transform.position;
+        newPos2.x += -0.2f;
+        Bullet2.transform.position = newPos2;
     }
 }
