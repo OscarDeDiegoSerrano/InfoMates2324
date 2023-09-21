@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class NauJugador : MonoBehaviour
 {
@@ -15,6 +16,22 @@ public class NauJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovimentNau();
+        DisparaBala();
+    }
+
+    private void OnTriggerEnter2D(Collider2D objecteTocat)
+    {
+        //Quan la Nau toqui algun objecte automàticament es cridarà aquest mètode.
+        //El valor del objecteTocat, serà l'objecte que hagim tocat (per exemple el número)
+        if (objecteTocat.tag == "Numero" || objecteTocat.tag == "Operacio")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void MovimentNau()
+    {
         //GetAxis acelera poco a poco
         //GetAxisRaw de golpe
         float direccioHorizontal = Input.GetAxisRaw("Horizontal");
@@ -25,8 +42,8 @@ public class NauJugador : MonoBehaviour
         Vector2 direccioIndicada = new Vector2(direccioHorizontal, direccioVertical).normalized;
 
         SpriteRenderer SpriteRenderer = GetComponent<SpriteRenderer>();
-        float anchura = SpriteRenderer.bounds.size.x/2;
-        float altura = SpriteRenderer.bounds.size.y/2;
+        float anchura = SpriteRenderer.bounds.size.x / 2;
+        float altura = SpriteRenderer.bounds.size.y / 2;
 
         //orthographicSize es la distancia desde el centro de la pantalla al borde.
         //Camera.main.aspect devuelve cuanto mas de anchura hay respecto a la altura ya que no todas las pantallas tienen la altura = a la anchura. R = ANCHURA / ALTURA.
@@ -44,27 +61,23 @@ public class NauJugador : MonoBehaviour
         novaPos.x = Mathf.Clamp(novaPos.x, limitEsquerraX, limitDretaX);
         novaPos.y = Mathf.Clamp(novaPos.y, limitInferiorY, limitSuperiorY);
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            shoot();
-        }
-
-        Debug.Log(novaPos.x);
-
         transform.position = novaPos;
     }
-    
-    private void shoot()
+
+    private void DisparaBala()
     {
-        GameObject Bullet = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
-        Vector2 newPos = transform.position;
-        newPos.x += 0.2f;
-        Bullet.transform.position = newPos;
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            GameObject Bullet = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
+            Vector2 newPos = transform.position;
+            newPos.x += 0.2f;
+            Bullet.transform.position = newPos;
 
 
-        GameObject Bullet2 = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
-        Vector2 newPos2 = transform.position;
-        newPos2.x += -0.2f;
-        Bullet2.transform.position = newPos2;
+            GameObject Bullet2 = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject);
+            Vector2 newPos2 = transform.position;
+            newPos2.x += -0.2f;
+            Bullet2.transform.position = newPos2;
+        }
     }
 }
