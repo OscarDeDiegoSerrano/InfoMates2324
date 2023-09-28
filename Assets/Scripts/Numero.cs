@@ -31,10 +31,12 @@ public class Numero : MonoBehaviour
         DestrueixSiSurtFora();
     }
 
+    //Numero:
     private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
         if (objecteTocat.tag == "Bullet" || objecteTocat.tag == "Player") 
-        { 
+        {
+            GameObject.Find("NumText").GetComponent<NumText>().AfegirNum(_valorNumero);
             Destroy(gameObject);
         }
     }
