@@ -30,7 +30,8 @@ public class NauJugador : MonoBehaviour
             // Fem que la explosió aparegui just en la posició de la NauJUgador.
             GameObject explosio = Instantiate(_PrefabExplosio);
             explosio.transform.position = transform.position;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GameObject.Find("GameManager").GetComponent<GameManager>().SetEstatGameManager(GameManager.EstatsGameManager.GameOver);
         }
     }
 

@@ -8,7 +8,7 @@ public class Explosion : MonoBehaviour
     void Start()
     {
         Invoke("DestrueixObjecte", 2f);
-        Animation animacio = GetComponent<Animation>();
+        
     }
 
     private void DestrueixObjecte()

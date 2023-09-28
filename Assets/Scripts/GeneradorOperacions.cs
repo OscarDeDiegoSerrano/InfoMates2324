@@ -5,10 +5,21 @@ using UnityEngine;
 public class GeneradorOperacions : MonoBehaviour
 {
     public GameObject PrefabOperacio;
+
+    public void IniciaGeneradorOperacions()
+    {
+        InvokeRepeating("GenerarOperacio", 1f, 3f);
+    }
+
+    public void AturaGeneradorOperacions()
+    {
+        CancelInvoke("GenerarOperacio");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("GenerarOperacions", 1f, 3f);
+        //InvokeRepeating("GenerarOperacions", 1f, 3f);
     }
 
     // Update is called once per frame
@@ -17,7 +28,7 @@ public class GeneradorOperacions : MonoBehaviour
 
     }
 
-    private void GenerarOperacions()
+    private void GenerarOperacio()
     {
         GameObject Operacio = Instantiate(PrefabOperacio);
         Vector2 CostatSuperiorDret = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));

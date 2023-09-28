@@ -5,11 +5,21 @@ using UnityEngine;
 public class GeneradorNumeros : MonoBehaviour
 {
     public GameObject PrefabNumero;
+
+    public void IniciaGeneradorNumeros()
+    {
+        InvokeRepeating("GenerarNumero", 1f, 3f);
+    }
+
+    public void AturaGeneradorNumeros()
+    {
+        CancelInvoke("GenerarNumero");
+    }
     // Start is called before the first frame update
     void Start()
     {
         //Invoke crida al metode GenerarNumero al segon d'iniciar-se y cada tres segons es repetirà l'acció.
-        InvokeRepeating("GenerarNumero", 1f, 3f);
+        //InvokeRepeating("GenerarNumero", 1f, 3f);
     }
 
     // Update is called once per frame
