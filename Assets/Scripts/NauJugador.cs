@@ -6,6 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class NauJugador : MonoBehaviour
 {
     public float _velNau; //variable velocitat Nau
+    public GameObject _PrefabExplosio;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,9 @@ public class NauJugador : MonoBehaviour
         //El valor del objecteTocat, serà l'objecte que hagim tocat (per exemple el número)
         if (objecteTocat.tag == "Numero" || objecteTocat.tag == "Operacio")
         {
+            // Fem que la explosió aparegui just en la posició de la NauJUgador.
+            GameObject explosio = Instantiate(_PrefabExplosio);
+            explosio.transform.position = transform.position;
             Destroy(gameObject);
         }
     }
