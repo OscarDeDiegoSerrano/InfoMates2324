@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject botoInici;
     public GameObject generadorNumeros;
     public GameObject generadorOperacions;
+    public GameObject botoTornarPantallaInici;
     public enum EstatsGameManager
     {
         Inici,
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
                 botoInici.SetActive(true);
                 generadorNumeros.GetComponent<GeneradorNumeros>().AturaGeneradorNumeros();
                 generadorOperacions.GetComponent<GeneradorOperacions>().AturaGeneradorOperacions();
+                botoTornarPantallaInici.SetActive(false);
                 break;
 
             case EstatsGameManager.Jugant:
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
                 botoInici.SetActive(false);
                 generadorNumeros.GetComponent<GeneradorNumeros>().IniciaGeneradorNumeros();
                 generadorOperacions.GetComponent<GeneradorOperacions>().IniciaGeneradorOperacions();
+                botoTornarPantallaInici.SetActive(false);
                 break;
 
             case EstatsGameManager.GameOver:
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
                 botoInici.SetActive(false);
                 generadorNumeros.GetComponent<GeneradorNumeros>().AturaGeneradorNumeros();
                 generadorOperacions.GetComponent<GeneradorOperacions>().AturaGeneradorOperacions();
+                botoTornarPantallaInici.SetActive(true);
                 break;
         }
     }
